@@ -16,9 +16,14 @@ LABEL MAINTAINER honwen <https://github.com/honwen>
 # /usr/bin/aiodns
 COPY --from=builder /go/bin /usr/bin
 
+# https://jessicadeen.com/how-to-solve-the-listen-tcp-80-bind-permission-denied-error-in-docker/
+RUN apk add libcap && setcap 'cap_net_bind_service=+ep' /usr/bin/aiodns
+
 USER nobody
 
-ENV PORT=5300 \
-    ARGS="-C -F -A -R -V -L=https://raw.sevencdn.com/honwen/openwrt-dnsmasq-extra/master/dnsmasq-extra/files/data/gfwlist -L=https://raw.sevencdn.com/honwen/openwrt-dnsmasq-extra/master/dnsmasq-extra/files/data/tldn -L=https://raw.sevencdn.com/Loyalsoldier/v2ray-rules-dat/release/greatfire.txt"
+EXPOSE 53
+
+ENV PORT=53 \
+    ARGS="-C -F -A -R -O=/tmp/aiodns.log -L=https://raw.sevencdn.com/honwen/openwrt-dnsmasq-extra/master/dnsmasq-extra/files/data/gfwlist -L=https://raw.sevencdn.com/honwen/openwrt-dnsmasq-extra/master/dnsmasq-extra/files/data/tldn -L=https://raw.sevencdn.com/Loyalsoldier/v2ray-rules-dat/release/greatfire.txt"
 
 CMD aiodns -l=:${PORT} ${ARGS}

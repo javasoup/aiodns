@@ -185,6 +185,10 @@ func main() {
 			Name:  "verbose, V",
 			Usage: "If specified, Verbose output",
 		},
+		cli.StringFlag{
+			Name:  "output, O",
+			Usage: "If specified, Verbose output",
+		},
 	}
 
 	app.Action = func(c *cli.Context) error {
@@ -210,6 +214,7 @@ func main() {
 		options.EDNSAddr = c.String("edns")
 		options.Cache = c.BoolT("cache")
 		options.Verbose = c.BoolT("verbose")
+		options.LogOutput = c.String("output")
 		options.Insecure = c.BoolT("insecure")
 		options.RefuseAny = c.BoolT("refuse-any")
 		options.IPv6Disabled = c.BoolT("ipv6-disabled")

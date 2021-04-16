@@ -14,10 +14,18 @@ A All-In-One DNS Solution, A Specail-List Rule Generator of `AdguardTeam/dnsprox
 
 - https://hub.docker.com/r/chenhw2/aiodns
 
+### Build
+```
+make
+docker build -t javasoup/aiodns .    
+docker container rm aiodns 
+docker run --name aiodns -v /tmp:/tmp --net=host javasoup/aiodns
+```
+
 ### Usage
 
 ```bash
-$ docker pull chenhw2/aiodns
+$ docker pull javasoup/aiodns
 
 $ docker run -d \
     ---network=host \

@@ -4,7 +4,7 @@ A All-In-One DNS Solution, A Specail-List Rule Generator of `AdguardTeam/dnsprox
 
 ### Source
 
-- https://github.com/honwen/aiodns
+- https://github.com/javasoup/aiodns
 
 ### Thanks
 
@@ -12,7 +12,7 @@ A All-In-One DNS Solution, A Specail-List Rule Generator of `AdguardTeam/dnsprox
 
 ### Docker
 
-- https://hub.docker.com/r/chenhw2/aiodns
+- https://hub.docker.com/r/javasoup/aiodns
 
 ### Build
 ```
@@ -27,17 +27,13 @@ docker run --name aiodns -v /tmp:/tmp --net=host javasoup/aiodns
 ```bash
 $ docker pull javasoup/aiodns
 
-$ docker run -d \
-    ---network=host \
-    -e PORT=53 \
-    chenhw2/aiodns
-
+$ docker run --name aiodns -v /tmp:/tmp --net=host javasoup/aiodns
 ```
 
 ### Help
 
 ```bash
-$ docker run --rm chenhw2/aiodns -h
+$ docker run --rm javasoup/aiodns -h
 NAME:
    AIO DNS - All In One Clean DNS Solution.
 
@@ -64,6 +60,7 @@ GLOBAL OPTIONS:
    --refuse-any, -A                    If specified, refuse ANY requests
    --fastest-addr, -F                  If specified, Respond to A or AAAA requests only with the fastest IP address
    --verbose, -V                       If specified, Verbose output
+   --output, -O                        If specified, Log file output
    --help, -h                          show help
    --version, -v                       print the version
 ```
